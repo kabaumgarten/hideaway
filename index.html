@@ -4,9 +4,36 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>hideaway – Raum für tiefe Arbeit</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    @font-face {
+      font-family: 'DM Sans';
+      src: url('fonts/dm-sans-300.woff2') format('woff2');
+      font-weight: 300;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'DM Sans';
+      src: url('fonts/dm-sans-300italic.woff2') format('woff2');
+      font-weight: 300;
+      font-style: italic;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'DM Sans';
+      src: url('fonts/dm-sans-regular.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'DM Sans';
+      src: url('fonts/dm-sans-500.woff2') format('woff2');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+  </style>
   <style>
     :root {
       --stone:  #e8e4de;
@@ -225,6 +252,35 @@
       letter-spacing: 0.05em;
     }
 
+    /* Impressum toggle */
+    .impressum-wrap { border-top: 1px solid var(--warm); }
+    .impressum-toggle {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 1.25rem 2rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mist);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: color 0.2s;
+    }
+    .impressum-toggle:hover { color: var(--ink); }
+    .impressum-toggle .arrow { display: inline-block; transition: transform 0.3s ease; font-size: 0.6rem; }
+    .impressum-toggle.open .arrow { transform: rotate(180deg); }
+    .impressum-content { display: none; padding: 0 2rem 2.5rem; max-width: 680px; margin-inline: auto; }
+    .impressum-content.open { display: block; }
+    .impressum-content p { font-size: 0.82rem; color: var(--mist); line-height: 1.8; margin-bottom: 0.25rem; }
+    .impressum-content strong { color: var(--ink); }
+    .imp-section { margin-bottom: 1.5rem; }
+    .imp-label { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--warm); margin-bottom: 0.4rem; }
+
     /* Reveal */
     .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal.visible { opacity: 1; transform: none; }
@@ -330,8 +386,8 @@
   <section id="about" class="section">
     <div class="wrap">
       <div class="about-grid reveal">
-        <img src="katrin.jpg" alt="Katrin Baumgarten"
-          style="width:100%; aspect-ratio:3/4; object-fit:cover;" />
+      <img src="katrin.jpg" alt="Katrin Baumgarten"
+        style="width:100%; aspect-ratio:3/4; object-fit:cover;" />
         <div>
           <p class="eyebrow">Über mich</p>
           <p class="about-name">Katrin Baumgarten</p>
@@ -361,7 +417,95 @@
   </section>
 
   <hr class="rule" />
-  <footer>© 2026 hideaway &nbsp;·&nbsp; Impressum &nbsp;·&nbsp; Datenschutz</footer>
+  <footer>© 2026 hideaway</footer>
+
+  <!-- Impressum -->
+  <div class="impressum-wrap">
+    <button class="impressum-toggle" onclick="toggleImpressum()">
+      Impressum <span class="arrow" id="imp-arrow">▼</span>
+    </button>
+    <div class="impressum-content" id="impressum-content">
+
+      <div class="imp-section">
+        <p class="imp-label">Angaben gemäß § 5 DDG</p>
+        <p><strong>Katrin Baumgarten</strong></p>
+        <p>[Straße &amp; Hausnummer]</p>
+        <p>[PLZ] Dresden</p>
+        <p>Deutschland</p>
+      </div>
+
+      <div class="imp-section">
+        <p class="imp-label">Kontakt</p>
+        <p>E-Mail: katrinbaumgarten@gmail.com</p>
+        <p>Telefon: [Telefonnummer einfügen]</p>
+      </div>
+
+      <div class="imp-section">
+        <p class="imp-label">Steuerliche Angaben</p>
+        <p>Kleinunternehmer gemäß § 19 UStG</p>
+        <p>Wirtschafts-Identifikationsnummer (W-IdNr.): [W-IdNr. einfügen, sobald vorhanden]</p>
+      </div>
+
+      <div class="imp-section">
+        <p class="imp-label">Haftungsausschluss</p>
+        <p>Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Datenschutz -->
+  <div class="impressum-wrap">
+    <button class="impressum-toggle" onclick="toggleDatenschutz()">
+      Datenschutzerklärung <span class="arrow" id="dse-arrow">▼</span>
+    </button>
+    <div class="impressum-content" id="datenschutz-content">
+
+      <div class="imp-section">
+        <p class="imp-label">1. Verantwortliche Person</p>
+        <p>Katrin Baumgarten, [Straße &amp; Hausnummer], [PLZ] Dresden</p>
+        <p>E-Mail: katrinbaumgarten@gmail.com</p>
+      </div>
+
+      <div class="imp-section">
+        <p class="imp-label">2. Welche Daten wir erheben</p>
+        <p>Diese Website erhebt keine personenbezogenen Daten durch Formulare oder Tracking-Tools. Beim Klick auf den E-Mail-Link werden keine Daten durch uns gespeichert.</p>
+      </div>
+
+      <div class="imp-section">
+        <p class="imp-label">3. Hosting</p>
+        <p>Diese Website wird bei GitHub Pages (GitHub Inc., San Francisco, USA) gehostet. GitHub kann beim Aufruf Server-Logdaten erfassen. Weitere Infos: <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" style="color: var(--moss);" target="_blank">github.com/privacy</a></p>
+      </div>
+
+      <div class="imp-section">
+        <p class="imp-label">4. Google Fonts</p>
+        <p>Diese Website lädt Schriften von Google Fonts (Google Ireland Limited, Dublin). Dabei wird deine IP-Adresse an Google übertragen. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO.</p>
+      </div>
+
+      <div class="imp-section">
+        <p class="imp-label">5. Deine Rechte</p>
+        <p>Du hast das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung. Kontakt: katrinbaumgarten@gmail.com</p>
+        <p style="margin-top:0.4rem;">Beschwerderecht beim Sächsischen Datenschutzbeauftragten: saechsdsb.de</p>
+      </div>
+
+      <div class="imp-section">
+        <p class="imp-label">6. Cookies</p>
+        <p>Diese Website verwendet keine Cookies.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+  function toggleImpressum() {
+    document.getElementById('impressum-content').classList.toggle('open');
+    document.querySelectorAll('.impressum-toggle')[0].classList.toggle('open');
+  }
+  function toggleDatenschutz() {
+    document.getElementById('datenschutz-content').classList.toggle('open');
+    document.querySelectorAll('.impressum-toggle')[1].classList.toggle('open');
+  }
+  </script>
 
   <script>
     const els = document.querySelectorAll('.reveal');
@@ -373,3 +517,4 @@
 
 </body>
 </html>
+<!-- intentional -->
