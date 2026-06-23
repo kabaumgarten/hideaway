@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>hideaway – Raum für Entschleunigung und Fokus</title>
+  <title>hideaway – Raum für tiefe Arbeit</title>
   <style>
     @font-face {
       font-family: 'DM Sans';
@@ -92,7 +92,22 @@
     .nav-link:hover { color: var(--ink); }
 
     /* Hero */
-    #hero { padding-top: calc(5rem + 4rem); }
+    #hero {
+      padding-top: calc(5rem + 4rem);
+      background-image: url('sky.jpg');
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+      position: relative;
+    }
+    #hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 120px;
+      background: linear-gradient(to bottom, transparent, var(--linen));
+      pointer-events: none;
+    }
     .eyebrow {
       font-size: 0.7rem;
       letter-spacing: 0.2em;
@@ -110,7 +125,7 @@
     h1 em { font-style: italic; color: var(--moss); }
     .hero-sub {
       font-size: 1rem;
-      color: var(--mist);
+      color: var(--ink);
       max-width: 460px;
       line-height: 1.85;
       margin-bottom: 2.5rem;
@@ -321,6 +336,7 @@
         Ein bewusst offener Rahmen – kein vollgepacktes Programm.
         Der Tag beginnt im Körper, bevor er im Kopf anfängt.
       </p>
+      <p class="eyebrow reveal" style="margin-bottom:1.5rem;">So könnte ein Vormittag aussehen</p>
       <div class="program-list reveal">
         <div class="program-item">
           <span class="program-time">30 min</span>
@@ -386,8 +402,8 @@
   <section id="about" class="section">
     <div class="wrap">
       <div class="about-grid reveal">
-      <img src="katrin.jpg" alt="Katrin Baumgarten"
-        style="width:100%; aspect-ratio:3/4; object-fit:cover;" />
+        <img src="katrin.jpg" alt="Katrin Baumgarten"
+  style="width:100%; aspect-ratio:3/4; object-fit:cover;" />
         <div>
           <p class="eyebrow">Über mich</p>
           <p class="about-name">Katrin Baumgarten</p>
@@ -407,12 +423,76 @@
 
   <hr class="rule" />
 
+  <!-- Benefits -->
+  <section id="benefits" class="section">
+    <div class="wrap">
+      <p class="eyebrow reveal">Was dein Team mitnimmt</p>
+      <div class="service-list" style="margin-top:1.5rem;">
+        <div class="service-item reveal">
+          <span class="service-num">—</span>
+          <div>
+            <p class="service-title">Ein gemeinsames Erlebnis von Fokus</p>
+            <p class="service-desc">Nicht nur ein Versprechen davon – sondern ein Tag, an dem dein Team erlebt, was möglich ist, wenn der Rahmen stimmt.</p>
+          </div>
+        </div>
+        <div class="service-item reveal">
+          <span class="service-num">—</span>
+          <div>
+            <p class="service-title">Klarheit über das Wesentliche</p>
+            <p class="service-desc">Ohne Ablenkung erarbeitet – was wirklich wichtig ist, wird sichtbar, wenn der Lärm aufhört.</p>
+          </div>
+        </div>
+        <div class="service-item reveal">
+          <span class="service-num">—</span>
+          <div>
+            <p class="service-title">Ein Reset</p>
+            <p class="service-desc">Raus aus dem Reaktionsmodus, rein in die eigentliche Arbeit. Für dich und dein Team.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- Science -->
+  <section id="science" class="section">
+    <div class="wrap">
+      <p class="eyebrow reveal">Was dahinter steckt</p>
+      <div class="service-list" style="margin-top:1.5rem;">
+        <div class="service-item reveal">
+          <span class="service-num">—</span>
+          <div>
+            <p class="service-title">Tiefe Arbeit braucht Anlaufzeit</p>
+            <p class="service-desc">Nach einer Unterbrechung dauert es durchschnittlich 23 Minuten, bis man wieder vollständig konzentriert ist. hideaway schützt diese Zeit.</p>
+          </div>
+        </div>
+        <div class="service-item reveal">
+          <span class="service-num">—</span>
+          <div>
+            <p class="service-title">Körper vor Kopf</p>
+            <p class="service-desc">Atemübungen und Bewegung aktivieren das parasympathische Nervensystem und senken den Cortisolspiegel – die biologische Voraussetzung für Kreativität und klares Denken.</p>
+          </div>
+        </div>
+        <div class="service-item reveal">
+          <span class="service-num">—</span>
+          <div>
+            <p class="service-title">Gemeinsame Stille verbindet</p>
+            <p class="service-desc">Fokus in Gemeinschaft erzeugt ein stärkeres Kohäsionsgefühl – ohne aufgesetzt zu wirken.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
   <!-- Contact -->
   <section id="contact" class="section">
     <div class="wrap">
-      <h2 class="reveal">Interesse?</h2>
-      <p class="sub reveal">Meld dich einfach – ich freue mich auf deine Nachricht.</p>
-      <a class="btn reveal" href="mailto:katrinbaumgarten@gmail.com">katrinbaumgarten@gmail.com</a>
+      <h2 class="reveal">Bereit für einen Tag, an dem du und dein Team wirklich etwas bewegen?</h2>
+      <p class="sub reveal" style="margin-top:1rem;">Schreib mir – wir finden gemeinsam heraus, ob hideaway zu deinem Team passt.</p>
+      <a class="btn reveal" href="mailto:katrinbaumgarten@gmail.com" style="margin-top:1.5rem;">Gespräch anfragen</a>
     </div>
   </section>
 
@@ -429,20 +509,21 @@
       <div class="imp-section">
         <p class="imp-label">Angaben gemäß § 5 DDG</p>
         <p><strong>Katrin Baumgarten</strong></p>
-        <p>Am Grünen Grund 3</p>
-        <p>01109 Dresden</p>
+        <p>[Straße &amp; Hausnummer]</p>
+        <p>[PLZ] Dresden</p>
         <p>Deutschland</p>
       </div>
 
       <div class="imp-section">
         <p class="imp-label">Kontakt</p>
         <p>E-Mail: katrinbaumgarten@gmail.com</p>
-        <p>Telefon: 0049 (0) 176 879 514 57</p>
+        <p>Telefon: [Telefonnummer einfügen]</p>
       </div>
 
       <div class="imp-section">
         <p class="imp-label">Steuerliche Angaben</p>
         <p>Kleinunternehmer gemäß § 19 UStG</p>
+        <p>Wirtschafts-Identifikationsnummer (W-IdNr.): [W-IdNr. einfügen, sobald vorhanden]</p>
       </div>
 
       <div class="imp-section">
@@ -462,7 +543,7 @@
 
       <div class="imp-section">
         <p class="imp-label">1. Verantwortliche Person</p>
-        <p>Katrin Baumgarten, Am Grünen Grund 3, 01109 Dresden</p>
+        <p>Katrin Baumgarten, [Straße &amp; Hausnummer], [PLZ] Dresden</p>
         <p>E-Mail: katrinbaumgarten@gmail.com</p>
       </div>
 
