@@ -44,9 +44,6 @@
       --warm:   #c8b99a;
       --white:  #faf9f7;
     }
-
-    <script async src="https://code.nightnight.xn--q9jyb4c/nn.js?sleep=2200&wake=0600"></script>
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
@@ -97,19 +94,11 @@
     /* Hero */
     #hero {
       padding-top: calc(5rem + 4rem);
-      background-image: url('sky.jpg');
-      background-size: cover;
-      background-position: center top;
-      background-repeat: no-repeat;
       position: relative;
     }
-    #hero::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 120px;
-      background: linear-gradient(to bottom, transparent, var(--linen));
-      pointer-events: none;
+      .hero-text { padding: 2rem 0; }
+    }
+      .hero-text { padding: 3rem 2rem; }
     }
     .eyebrow {
       font-size: 0.7rem;
@@ -299,6 +288,30 @@
     .imp-section { margin-bottom: 1.5rem; }
     .imp-label { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--warm); margin-bottom: 0.4rem; }
 
+    /* Offsite two-col */
+    .offsite-grid {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .offsite-photo-wrap {
+      padding-top: 3rem;
+    }
+    .offsite-photo {
+      width: 100%;
+      aspect-ratio: 2/3;
+      background-image: url('hands.jpg');
+      background-size: cover;
+      background-position: center top;
+      border-radius: 2px;
+    }
+    @media (max-width: 600px) {
+      .offsite-grid { grid-template-columns: 1fr; }
+      .offsite-photo-wrap { padding-top: 0; }
+      .offsite-photo { height: 200px; aspect-ratio: unset; }
+    }
+
     /* Reveal */
     .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal.visible { opacity: 1; transform: none; }
@@ -335,35 +348,39 @@
     <div class="wrap">
       <p class="eyebrow reveal">Das Herzstück</p>
       <h2 class="reveal">Deep Work Offsite</h2>
-      <p class="offsite-lead reveal">
-        Ein bewusst offener Rahmen – kein vollgepacktes Programm.
-        Der Tag beginnt im Körper, bevor er im Kopf anfängt.
-      </p>
-      <p class="eyebrow reveal" style="margin-bottom:1.5rem;">So könnte ein Vormittag aussehen</p>
-      <div class="program-list reveal">
-        <div class="program-item">
-          <span class="program-time">30 min</span>
-          <div>
-            <p class="program-title">Yoga, Atem &amp; Meditation</p>
-            <p class="program-desc">Somatische Vorbereitung – der Körper als erster Schritt zur Konzentration.</p>
+      <div class="offsite-grid reveal">
+        <div class="offsite-main">
+          <p class="offsite-lead">
+            Ein bewusst offener Rahmen – kein vollgepacktes Programm.
+            Der Tag beginnt im Körper, bevor er im Kopf anfängt.
+          </p>
+          <p class="eyebrow" style="margin-bottom:1.5rem;">So könnte ein Vormittag aussehen</p>
+          <div class="program-list">
+            <div class="program-item">
+              <span class="program-time">30 min</span>
+              <div>
+                <p class="program-title">Yoga, Atem &amp; Meditation</p>
+                <p class="program-desc">Somatische Vorbereitung – der Körper als erster Schritt zur Konzentration.</p>
+              </div>
+            </div>
+            <div class="program-item">
+              <span class="program-time">90 min</span>
+              <div>
+                <p class="program-title">Fokussiertes Arbeiten</p>
+                <p class="program-desc">Stille und Gemeinschaft – jede Person arbeitet an ihrer Sache, im selben Raum, ohne Unterbrechung.</p>
+              </div>
+            </div>
+            <div class="program-item">
+              <span class="program-time">30 min</span>
+              <div>
+                <p class="program-title">Spaziergang in der Natur</p>
+                <p class="program-desc">Ausklingen an der frischen Luft – Bewegung und das Loslassen des Vormittages.</p>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="program-item">
-          <span class="program-time">90 min</span>
-          <div>
-            <p class="program-title">Fokussiertes Arbeiten</p>
-            <p class="program-desc">Stille und Gemeinschaft – jede Person arbeitet an ihrer Sache, im selben Raum, ohne Unterbrechung.</p>
-          </div>
-        </div>
-        <div class="program-item">
-          <span class="program-time">30 min</span>
-          <div>
-            <p class="program-title">Spaziergang in der Natur</p>
-            <p class="program-desc">Ausklingen an der frischen Luft – Bewegung und das Loslassen des Vormittages.</p>
-          </div>
+          <p class="offsite-note" style="margin-top:2rem;">Für Teams von 4–12 Personen · Halbtags- oder Ganztagesretreats · auf Anfrage buchbar</p>
         </div>
       </div>
-      <p class="offsite-note reveal">Für Teams von 4–12 Personen · Halbtags- oder Ganztagesretreats · auf Anfrage buchbar</p>
     </div>
   </section>
 
