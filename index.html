@@ -46,8 +46,6 @@
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-
-    <script async src="https://code.nightnight.xn--q9jyb4c/nn.js?sleep=2200&wake=0600"></script>
     body {
       background: var(--linen);
       color: var(--ink);
@@ -95,12 +93,56 @@
 
     /* Hero */
     #hero {
-      padding-top: calc(5rem + 4rem);
       position: relative;
+      padding-top: 0;
+      margin-top: 0;
     }
-      .hero-text { padding: 2rem 0; }
+    .hero-photo {
+      position: relative;
+      width: 100%;
+      height: 92vh;
+      min-height: 560px;
+      max-height: 900px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
     }
-      .hero-text { padding: 3rem 2rem; }
+    .hero-photo-placeholder {
+      position: absolute;
+      inset: 0;
+      background: var(--stone);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--warm);
+    }
+    .hero-photo-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(30,28,25,0.6) 0%, rgba(30,28,25,0.15) 50%, transparent 100%);
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 2rem 3.5rem;
+      max-width: 680px;
+      margin-inline: auto;
+      width: 100%;
+    }
+    .hero-inner {
+      border-left: 2px solid rgba(250,249,247,0.4);
+      padding-left: 2rem;
     }
     .eyebrow {
       font-size: 0.7rem;
@@ -110,23 +152,26 @@
       margin-bottom: 1.5rem;
     }
     h1 {
-      font-size: clamp(2.6rem, 7vw, 4.5rem);
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
       font-weight: 300;
       line-height: 1.1;
-      color: var(--ink);
-      margin-bottom: 1.5rem;
+      color: var(--white);
+      margin-bottom: 1.25rem;
     }
-    h1 em { font-style: italic; color: var(--moss); }
+    h1 em { font-style: italic; color: rgba(250,249,247,0.8); }
+    .hero-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(250,249,247,0.55);
+      margin-bottom: 1.25rem;
+    }
     .hero-sub {
-      font-size: 1rem;
-      color: var(--ink);
-      max-width: 460px;
+      font-size: 0.95rem;
+      color: rgba(250,249,247,0.72);
+      max-width: 420px;
       line-height: 1.85;
-      margin-bottom: 2.5rem;
-    }
-    .hero-inner {
-      border-left: 2px solid var(--moss);
-      padding-left: 2rem;
+      margin-bottom: 2rem;
     }
     .btn {
       display: inline-block;
@@ -143,6 +188,15 @@
       transition: background 0.2s;
     }
     .btn:hover { background: var(--ink); }
+    .btn-ghost {
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(250,249,247,0.6);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .btn-ghost:hover { color: var(--white); }
 
     /* Offsite */
     #offsite h2 {
@@ -290,30 +344,6 @@
     .imp-section { margin-bottom: 1.5rem; }
     .imp-label { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--warm); margin-bottom: 0.4rem; }
 
-    /* Offsite two-col */
-    .offsite-grid {
-      display: grid;
-      grid-template-columns: 200px 1fr;
-      gap: 3rem;
-      align-items: start;
-    }
-    .offsite-photo-wrap {
-      padding-top: 3rem;
-    }
-    .offsite-photo {
-      width: 100%;
-      aspect-ratio: 2/3;
-      background-image: url('hands.jpg');
-      background-size: cover;
-      background-position: center top;
-      border-radius: 2px;
-    }
-    @media (max-width: 600px) {
-      .offsite-grid { grid-template-columns: 1fr; }
-      .offsite-photo-wrap { padding-top: 0; }
-      .offsite-photo { height: 200px; aspect-ratio: unset; }
-    }
-
     /* Reveal */
     .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal.visible { opacity: 1; transform: none; }
@@ -324,21 +354,66 @@
 
   <nav>
     <a class="nav-logo" href="#">hideaway</a>
-    <a class="nav-link" href="#contact">Kontakt</a>
+    <a class="nav-link" href="#contact">Pilot buchen</a>
   </nav>
 
   <!-- Hero -->
-  <section id="hero" class="section">
+  <section id="hero">
+    <div class="hero-photo">
+      <div class="hero-photo-placeholder">
+        <span>Foto Platzhalter<br/>z.B. 1600 × 900 px</span>
+      </div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-inner reveal">
+          <p class="hero-eyebrow">Deep Work Offsite · Dresden-Klotzsche</p>
+          <h1>Wann hast du zuletzt wirklich <em>tief gedacht?</em></h1>
+          <p class="hero-sub">
+            hideaway gibt dir genau das: einen halben Tag außerhalb des Tagesgeschäfts.
+            Atemarbeit zum Ankommen, 90 Minuten stilles Arbeiten an dem, was wirklich zählt,
+            ein Spaziergang zum Abschluss. Klotzsche, max. 6 Personen.
+          </p>
+          <div style="display:flex;gap:1.25rem;align-items:center;flex-wrap:wrap;">
+            <a href="#contact" class="btn">Pilot buchen</a>
+            <a href="#offsite" class="btn-ghost">Was passiert dort?</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- Problem -->
+  <section id="problem" class="section">
     <div class="wrap">
-      <div class="hero-inner reveal">
-        <p class="eyebrow">Offsite · Deep Work · Dresden / Klotzsche</p>
-        <h1>Ein Tag,<br/>der <em>wirklich zählt.</em></h1>
-        <p class="hero-sub">
-          Außerhalb des Büros, fernab von Slack und Meetings.
-          hideaway schafft den Rahmen für tiefe, fokussierte Arbeit –
-          für Teams, die mehr wollen als Effizienz.
-        </p>
-        <a href="#offsite" class="btn">Mehr erfahren</a>
+      <p class="eyebrow reveal">Warum jetzt</p>
+      <h2 class="reveal" style="font-size:clamp(1.5rem,4vw,2.2rem);font-weight:300;margin-bottom:1.25rem;color:var(--ink);">Dein Kalender ist voll.<br/>Dein Kopf auch.</h2>
+      <p class="reveal" style="font-size:1rem;color:var(--ink);line-height:1.85;max-width:520px;margin-bottom:2rem;">
+        Stand-ups, Reviews, Abstimmungsrunden, Eskalationen. Dazwischen der strategische Gedanke, der nie zu Ende kommt. Die Entscheidung, die seit Wochen wartet. Die Frage, auf die du weißt, dass sie drei ruhige Stunden bräuchte. Die du nicht hast.
+      </p>
+      <div class="service-list reveal">
+        <div class="service-item">
+          <span class="service-num">·</span>
+          <div>
+            <p class="service-title">Komplexe Entscheidungen bleiben ungelöst</p>
+            <p class="service-desc">Sie werden im nächsten Meeting kurz besprochen und verschwinden wieder in der Warteschleife.</p>
+          </div>
+        </div>
+        <div class="service-item">
+          <span class="service-num">·</span>
+          <div>
+            <p class="service-title">Strategische Klarheit entsteht nicht zwischen 8 und 18 Uhr</p>
+            <p class="service-desc">Nicht wenn jede Stunde verplant ist und jede Unterbrechung den Fokus zurücksetzt.</p>
+          </div>
+        </div>
+        <div class="service-item">
+          <span class="service-num">·</span>
+          <div>
+            <p class="service-title">Die Komplexität steigt, die Denkzeit sinkt</p>
+            <p class="service-desc">Wachstum, Transformation, internationale Koordination: der Raum für tiefes Denken schrumpft genau dann, wenn er am meisten gebraucht wird.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -348,73 +423,58 @@
   <!-- Offsite -->
   <section id="offsite" class="section">
     <div class="wrap">
-      <p class="eyebrow reveal">Das Herzstück</p>
-      <h2 class="reveal">Deep Work Offsite</h2>
-      <div class="offsite-grid reveal">
-        <div class="offsite-main">
-          <p class="offsite-lead">
-            Ein bewusst offener Rahmen – kein vollgepacktes Programm.
-            Der Tag beginnt im Körper, bevor er im Kopf anfängt.
-          </p>
-          <p class="eyebrow" style="margin-bottom:1.5rem;">So könnte ein Vormittag aussehen</p>
-          <div class="program-list">
-            <div class="program-item">
-              <span class="program-time">30 min</span>
-              <div>
-                <p class="program-title">Yoga, Atem &amp; Meditation</p>
-                <p class="program-desc">Somatische Vorbereitung – der Körper als erster Schritt zur Konzentration.</p>
-              </div>
-            </div>
-            <div class="program-item">
-              <span class="program-time">90 min</span>
-              <div>
-                <p class="program-title">Fokussiertes Arbeiten</p>
-                <p class="program-desc">Stille und Gemeinschaft – jede Person arbeitet an ihrer Sache, im selben Raum, ohne Unterbrechung.</p>
-              </div>
-            </div>
-            <div class="program-item">
-              <span class="program-time">30 min</span>
-              <div>
-                <p class="program-title">Spaziergang in der Natur</p>
-                <p class="program-desc">Ausklingen an der frischen Luft – Bewegung und das Loslassen des Vormittages.</p>
-              </div>
-            </div>
+      <p class="eyebrow reveal">Das Angebot</p>
+      <h2 class="reveal" style="font-size:clamp(1.5rem,4vw,2.2rem);font-weight:300;margin-bottom:1rem;color:var(--ink);">Ein halber Tag. Eine Sache.<br/>Wirklich zu Ende gedacht.</h2>
+      <p class="offsite-lead reveal">
+        hideaway ist kein Retreat und kein Workshop. Es ist eine strukturierte Auszeit
+        mit dem Ziel, dass du mit einem konkreten Ergebnis nach Hause gehst.
+      </p>
+      <p class="eyebrow reveal" style="margin-bottom:1.5rem;">Wie ein Offsite-Tag aussieht</p>
+      <div class="program-list reveal">
+        <div class="program-item">
+          <span class="program-time">30 min</span>
+          <div>
+            <p class="program-title">Ankommen — Körper &amp; Atem</p>
+            <p class="program-desc">Sanfte Yoga-Bewegungen und geführte Atemarbeit. Keine Vorkenntnisse, kein Sportoutfit, keine Yogamatte nötig. Du setzt eine Intention: was soll heute entstehen?</p>
+            <p class="program-desc" style="margin-top:0.5rem;font-style:italic;">Das Nervensystem braucht Zeit, um aus dem Reaktionsmodus herauszukommen. Diese Phase schafft die physiologische Grundlage für alles, was danach folgt.</p>
           </div>
-          <p class="offsite-note" style="margin-top:2rem;">Für Teams von 4–12 Personen · Halbtags- oder Ganztagesretreats · auf Anfrage buchbar</p>
+        </div>
+        <div class="program-item">
+          <span class="program-time">90 min</span>
+          <div>
+            <p class="program-title">Tiefe Arbeit — stilles, fokussiertes Arbeiten</p>
+            <p class="program-desc">Du arbeitest allein, in Stille, an dem, was du mitgebracht hast. Eine Entscheidung. Ein Konzept. Eine Frage, die seit Wochen wartet. Keine Benachrichtigungen, kein Austausch, nur dein Thema.</p>
+            <p class="program-desc" style="margin-top:0.5rem;font-style:italic;">Tiefer Fokus braucht mindestens 60–90 Minuten ohne Unterbrechung. Dieser Block ist so gestaltet, dass genau das entstehen kann — nicht als Ausnahme, sondern als Struktur.</p>
+          </div>
+        </div>
+        <div class="program-item">
+          <span class="program-time">30 min</span>
+          <div>
+            <p class="program-title">Integration — Spaziergang im Freien</p>
+            <p class="program-desc">Kein Debriefing, kein Protokoll. Ein Spaziergang in naturnaher Umgebung. Bewegung, Luft, keine Agenda. Das Gehirn arbeitet weiter, im Hintergrund.</p>
+            <p class="program-desc" style="margin-top:0.5rem;font-style:italic;">Naturexposition reduziert kognitive Erschöpfung und stellt die Aufmerksamkeit wieder her. Dieser Abschluss ist kein Bonus — er ist Teil der Wirksamkeit.</p>
+          </div>
         </div>
       </div>
+      <p style="margin-top:2rem;padding:1.1rem 1.25rem;border-left:2px solid var(--moss);font-size:0.9rem;color:var(--ink);line-height:1.8;" class="reveal">
+        Danach gehst du zurück in deinen Alltag. Mit dem, was entstanden ist, und einem anderen Körpergefühl als vorher. Kein Zertifikat, kein Workbook. Nur Klarheit.
+      </p>
+      <p class="offsite-note reveal" style="margin-top:1.5rem;">Für Einzelpersonen und Teams · max. 6 Personen · Dresden-Klotzsche · auf Anfrage buchbar</p>
     </div>
   </section>
 
   <hr class="rule" />
 
-  <!-- Services -->
-  <section id="services" class="section">
+  <!-- Benefits + Science zusammen -->
+  <section id="benefits" class="section">
     <div class="wrap">
-      <p class="eyebrow reveal">Weitere Angebote</p>
-      <div class="service-list">
-        <div class="service-item reveal">
-          <span class="service-num">—</span>
-          <div>
-            <p class="service-title">Vorträge &amp; Workshops</p>
-            <p class="service-desc">Einführungen in Deep Work für Führungskräfte und Teams – als Impuls oder halbtägiger Workshop.</p>
-          </div>
-        </div>
-        <div class="service-item reveal">
-          <span class="service-num">—</span>
-          <div>
-            <p class="service-title">Morning Practice</p>
-            <p class="service-desc">Regelmäßige Morgenrunden mit Yoga, Meditation und Atemübungen für dein Team.</p>
-          </div>
-        </div>
-        <div class="service-item reveal">
-          <span class="service-num">—</span>
-          <div>
-            <p class="service-title">Partizipativer Workshop</p>
-            <p class="service-desc">Arbeitskultur rund um fokussiertes Arbeiten im Team – gemeinsam erarbeitet, nicht verordnet.</p>
-          </div>
-        </div>
-      </div>
+      <p class="eyebrow reveal">Was dein Team mitnimmt</p>
+      <p class="reveal" style="font-size:1rem;color:var(--ink);line-height:1.9;max-width:520px;margin-top:1.25rem;">
+        Kein Workbook, kein Zertifikat. Dein Team geht zurück in den Alltag mit dem, was entstanden ist: ein Gedanke wirklich zu Ende gedacht, eine Entscheidung getroffen, ein Kopf der klarer ist als vorher. Und ein gemeinsames Erlebnis davon, was möglich ist, wenn der Rahmen stimmt.
+      </p>
+      <p class="reveal" style="font-size:1rem;color:var(--ink);line-height:1.9;max-width:520px;margin-top:1.25rem;">
+        Was dahinter steckt: nach einer Unterbrechung dauert es durchschnittlich 23 Minuten, bis echte Konzentration wieder einsetzt. Atemarbeit und Bewegung aktivieren das parasympathische Nervensystem und senken den Cortisolspiegel — die biologische Voraussetzung für Kreativität und klares Denken. Fokus in Gemeinschaft erzeugt dabei ein stärkeres Zusammengehörigkeitsgefühl, ohne aufgesetzt zu wirken.
+      </p>
     </div>
   </section>
 
@@ -424,7 +484,7 @@
   <section id="about" class="section">
     <div class="wrap">
       <div class="about-grid reveal">
-        <img src="katrin.jpg" alt="Katrin Baumgarten"
+      <img src="katrin.jpg" alt="Katrin Baumgarten"
   style="width:100%; aspect-ratio:3/4; object-fit:cover;" />
         <div>
           <p class="eyebrow">Über mich</p>
@@ -436,7 +496,7 @@
           </p>
           <p class="about-desc">
             Seit über 10 Jahren unterrichte ich Yoga, Meditation und Atemarbeit.
-            hideaway verbindet beides – Erfahrung aus der Arbeitswelt und die Praxis der Stille.
+            hideaway verbindet beides: Erfahrung aus der Arbeitswelt und die Praxis der Stille.
           </p>
         </div>
       </div>
@@ -445,62 +505,30 @@
 
   <hr class="rule" />
 
-  <!-- Benefits -->
-  <section id="benefits" class="section">
+  <!-- Services -->
+  <section id="services" class="section">
     <div class="wrap">
-      <p class="eyebrow reveal">Was dein Team mitnimmt</p>
-      <div class="service-list" style="margin-top:1.5rem;">
+      <p class="eyebrow reveal">Weitere Angebote</p>
+      <div class="service-list" style="margin-top:1.25rem;">
         <div class="service-item reveal">
-          <span class="service-num">—</span>
+          <span class="service-num">·</span>
           <div>
-            <p class="service-title">Ein gemeinsames Erlebnis von Fokus</p>
-            <p class="service-desc">Nicht nur ein Versprechen davon – sondern ein Tag, an dem dein Team erlebt, was möglich ist, wenn der Rahmen stimmt.</p>
+            <p class="service-title">Vorträge &amp; Workshops</p>
+            <p class="service-desc">Einführungen in Deep Work für Führungskräfte und Teams, als Impuls oder halbtägiger Workshop.</p>
           </div>
         </div>
         <div class="service-item reveal">
-          <span class="service-num">—</span>
+          <span class="service-num">·</span>
           <div>
-            <p class="service-title">Klarheit über das Wesentliche</p>
-            <p class="service-desc">Ohne Ablenkung erarbeitet – was wirklich wichtig ist, wird sichtbar, wenn der Lärm aufhört.</p>
+            <p class="service-title">Morning Practice</p>
+            <p class="service-desc">Regelmäßige Morgenrunden mit Yoga, Meditation und Atemübungen für dein Team.</p>
           </div>
         </div>
         <div class="service-item reveal">
-          <span class="service-num">—</span>
+          <span class="service-num">·</span>
           <div>
-            <p class="service-title">Ein Reset</p>
-            <p class="service-desc">Raus aus dem Reaktionsmodus, rein in die eigentliche Arbeit. Für dich und dein Team.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="rule" />
-
-  <!-- Science -->
-  <section id="science" class="section">
-    <div class="wrap">
-      <p class="eyebrow reveal">Was dahinter steckt</p>
-      <div class="service-list" style="margin-top:1.5rem;">
-        <div class="service-item reveal">
-          <span class="service-num">—</span>
-          <div>
-            <p class="service-title">Tiefe Arbeit braucht Anlaufzeit</p>
-            <p class="service-desc">Nach einer Unterbrechung dauert es durchschnittlich 23 Minuten, bis man wieder vollständig konzentriert ist. hideaway schützt diese Zeit.</p>
-          </div>
-        </div>
-        <div class="service-item reveal">
-          <span class="service-num">—</span>
-          <div>
-            <p class="service-title">Körper vor Kopf</p>
-            <p class="service-desc">Atemübungen und Bewegung aktivieren das parasympathische Nervensystem und senken den Cortisolspiegel – die biologische Voraussetzung für Kreativität und klares Denken.</p>
-          </div>
-        </div>
-        <div class="service-item reveal">
-          <span class="service-num">—</span>
-          <div>
-            <p class="service-title">Gemeinsame Stille verbindet</p>
-            <p class="service-desc">Fokus in Gemeinschaft erzeugt ein stärkeres Kohäsionsgefühl – ohne aufgesetzt zu wirken.</p>
+            <p class="service-title">Partizipativer Workshop</p>
+            <p class="service-desc">Arbeitskultur rund um fokussiertes Arbeiten im Team — gemeinsam erarbeitet, nicht verordnet.</p>
           </div>
         </div>
       </div>
@@ -511,10 +539,13 @@
 
   <!-- Contact -->
   <section id="contact" class="section">
-    <div class="wrap">
-      <h2 class="reveal">Bereit für einen Tag, an dem du und dein Team wirklich etwas bewegen?</h2>
-      <p class="sub reveal" style="margin-top:1rem;">Schreib mir – wir finden gemeinsam heraus, ob hideaway zu deinem Team passt.</p>
-      <a class="btn reveal" href="mailto:katrinbaumgarten@gmail.com" style="margin-top:1.5rem;">Gespräch anfragen</a>
+    <div class="wrap" style="text-align:center;">
+      <h2 class="reveal" style="font-size:clamp(1.4rem,3.5vw,2rem);font-weight:300;margin-bottom:0.75rem;">Bereit für drei Stunden,<br/>die etwas verändern?</h2>
+      <p class="sub reveal" style="margin-top:1rem;font-size:0.9rem;color:var(--mist);max-width:440px;margin-inline:auto;">Pilot buchen oder erst ein kurzes Gespräch — beides ist der richtige Einstieg.</p>
+      <div class="reveal" style="margin-top:1.75rem;display:flex;gap:1.25rem;align-items:center;justify-content:center;flex-wrap:wrap;">
+        <a class="btn" href="mailto:katrinbaumgarten@gmail.com?subject=Pilot%20buchen">Pilot buchen</a>
+        <a href="mailto:katrinbaumgarten@gmail.com?subject=20-min%20Kennenlerngespräch" style="font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--mist);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--mist)'">20-minütiges Gespräch</a>
+      </div>
     </div>
   </section>
 
