@@ -348,6 +348,20 @@
     .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal.visible { opacity: 1; transform: none; }
     @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+ 
+    /* Scribble accent */
+    .scribble {
+      position: absolute;
+      top: 64px;
+      right: 2rem;
+      width: 140px;
+      height: auto;
+      z-index: 3;
+      pointer-events: none;
+    }
+    @media (max-width: 640px) {
+      .scribble { width: 90px; right: 1.25rem; top: 56px; }
+    }
   </style>
 </head>
 <body>
@@ -364,6 +378,7 @@
         <img src="heide.JPEG" alt="hideaway Offsite Dresden">
       </div>
       <div class="hero-overlay"></div>
+        <img src="scribbleBirds.png" alt="" class="scribble" />
       <div class="hero-content">
         <div class="hero-inner reveal">
           <p class="hero-eyebrow">Deep Work Offsite · Dresden-Klotzsche</p>
